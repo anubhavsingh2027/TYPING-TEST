@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TYPING TEST</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="heading"><h1>Typing Test</h1></div>
+    <div class="time-re">
+        <h2>Select Time -> </h2>
+        <select class="time-selection" id="time-selection">
+            <option value="15"><b>15 seconds</b></option>
+            <option value="30"><b>30 seconds</b></option>
+            <option value="60"><b>60 seconds</b></option>
+            <option value="120"><b>120 seconds</b></option>
+          </select>
+          <div id="results">
+              <p id="time">Time: <span>0</span> seconds</p>
+              <p id="accuracy">Accuracy: <span>0</span>%</p>
+              <p id="wpm">WPM: <span>0</span></p>
+            </div>
+    </div>
+    <p id="text-to-type">
+<b>        The quick brown fox jumps over the lazy dog, and the dog looks up lazily at the sky. The sun is setting, casting a warm glow over the meadow. Birds are chirping in the trees, and a gentle breeze rustles the leaves. In the distance, a river flows peacefully, its surface shimmering in the golden light. Life seems to slow down in these moments, and the world feels calm and serene. As the fox runs through the field, its paws barely make a sound on the soft grass. The dog, still lying down, watches curiously but makes no attempt to chase. Everything in nature seems to be in perfect harmony, moving in rhythm with the peacefulness of the moment. </p>
+</b>    </p>
+    <textarea id="user-input" placeholder="CLICK THE START  "></textarea>
+    <button id="start-button"><b>Start</b></button>
+    
+    <footer>
+        <h2>All rights reserved by Anubhav singh</h2>
+      </footer>
+  </div>
+   <div id="overlay" class="hidden">
+    <div class="overlay-content">
+      <h2>Time's Up!</h2>
+      <p><b>Accuracy :</b> <span id="final-accuracy">0</span>%</p>
+      <p><b>WPM :</b> <span id="final-wpm">0</span></p>
+      <button id="restart-button">Restart</button>
+    </div>
+  
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
