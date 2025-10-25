@@ -125,6 +125,16 @@ const achievements = [
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
+  // Show loader for 2 seconds then fade out
+  const loader = document.getElementById("loaderScreen");
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add("hidden");
+      // Remove from DOM after animation completes
+      setTimeout(() => loader.remove(), 500);
+    }, 2000);
+  }
+
   loadSettings();
   loadAchievements();
   generateText();
