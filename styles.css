@@ -204,4 +204,29 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
-    
+
+        /* Navbar and dark-mode tweaks */
+        nav[role="navigation"] {
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* simple dark mode styles applied when JS toggles .dark on body */
+        body.dark {
+            background: linear-gradient(135deg, #0f172a 0%, #071024 100%);
+            color: #e6eef8;
+        }
+
+        body.dark .modal-content,
+        body.dark .modal-overlay,
+        body.dark .modal-content .bg-white {
+            background-color: #0b1220 !important;
+            color: #e6eef8 !important;
+        }
+
+        /* small focus ring improvements for accessibility */
+        input:focus, button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+        }
+
+        .hidden { display: none !important; }

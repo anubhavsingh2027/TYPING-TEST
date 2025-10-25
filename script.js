@@ -129,11 +129,255 @@ document.addEventListener("DOMContentLoaded", () => {
   loadAchievements();
   generateText();
   setupAutoStart();
+  // initialize navbar behaviors (mobile menu, profile, dark mode)
+  setupNavbar();
 });
+
+// Navbar: setup and handlers
+function setupNavbar() {
+  const mobileBtn = document.getElementById("mobileMenuBtn");
+  const profileBtn = document.getElementById("profileBtn");
+  const darkToggle = document.getElementById("darkModeToggle");
+  const navSearch = document.getElementById("navSearch");
+
+  if (mobileBtn) mobileBtn.addEventListener("click", toggleMobileMenu);
+  if (profileBtn) profileBtn.addEventListener("click", toggleProfileMenu);
+  if (darkToggle) darkToggle.addEventListener("click", toggleDarkMode);
+  if (navSearch) navSearch.addEventListener("input", handleSearchInput);
+
+  // Close menus with Escape and when clicking outside
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeMobileMenu();
+      closeProfileMenu();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    const profileMenu = document.getElementById("profileMenu");
+    const profileBtnEl = document.getElementById("profileBtn");
+    if (
+      profileMenu &&
+      profileBtnEl &&
+      !profileMenu.contains(e.target) &&
+      !profileBtnEl.contains(e.target)
+    ) {
+      closeProfileMenu();
+    }
+  });
+
+  // initialize dark icon state from localStorage
+  const isDark = localStorage.getItem("darkMode") === "true";
+  if (isDark) {
+    document.body.classList.add("dark");
+    const icon = document.getElementById("darkIcon");
+    if (icon) icon.textContent = "☀️";
+    if (darkToggle) darkToggle.setAttribute("aria-pressed", "true");
+  }
+  // update profile button UI from stored profile
+  updateProfileUI();
+}
+
+function toggleMobileMenu() {
+  const mobileMenu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("mobileMenuBtn");
+  if (!mobileMenu || !btn) return;
+  const isHidden = mobileMenu.classList.contains("hidden");
+  if (isHidden) {
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.setAttribute("aria-hidden", "false");
+    btn.setAttribute("aria-expanded", "true");
+  } else {
+    closeMobileMenu();
+  }
+}
+
+function closeMobileMenu() {
+  const mobileMenu = document.getElementById("mobileMenu");
+  const btn = document.getElementById("mobileMenuBtn");
+  if (!mobileMenu || !btn) return;
+  mobileMenu.classList.add("hidden");
+  mobileMenu.setAttribute("aria-hidden", "true");
+  btn.setAttribute("aria-expanded", "false");
+}
+
+function toggleProfileMenu() {
+  const menu = document.getElementById("profileMenu");
+  const btn = document.getElementById("profileBtn");
+  if (!menu || !btn) return;
+  const isHidden = menu.classList.contains("hidden");
+  if (isHidden) {
+    menu.classList.remove("hidden");
+    btn.setAttribute("aria-expanded", "true");
+  } else {
+    closeProfileMenu();
+  }
+}
+
+function closeProfileMenu() {
+  const menu = document.getElementById("profileMenu");
+  const btn = document.getElementById("profileBtn");
+  if (!menu || !btn) return;
+  menu.classList.add("hidden");
+  btn.setAttribute("aria-expanded", "false");
+}
+
+function toggleDarkMode() {
+  const darkToggle = document.getElementById("darkModeToggle");
+  const icon = document.getElementById("darkIcon");
+  const isDark = document.body.classList.toggle("dark");
+  if (icon) icon.textContent = isDark ? "☀️" : "🌙";
+  if (darkToggle)
+    darkToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+  try {
+    localStorage.setItem("darkMode", isDark ? "true" : "false");
+  } catch (e) {}
+}
+
+function handleSearchInput(e) {
+  const q = (e.target.value || "").trim().toLowerCase();
+  // Simple UX: when user types 3+ characters, show matching tests from textContent keys in console
+  if (q.length >= 3) {
+    const matches = Object.keys(textContent).filter(
+      (k) =>
+        k.includes(q) ||
+        JSON.stringify(textContent[k]).toLowerCase().includes(q)
+    );
+    // For now, log suggestions and show a subtle highlight on the search box
+    console.log("Search suggestions:", matches);
+  }
+}
+
+// Profile modal and persistence (name + phone only)
+function updateProfileUI() {
+  try {
+    const profileBtn = document.getElementById("profileBtn");
+    const profile = JSON.parse(localStorage.getItem("profile") || "null");
+    let initials = "U";
+    if (profile && profile.name) {
+      const parts = profile.name.trim().split(/\s+/).filter(Boolean);
+      initials =
+        parts.length === 1
+          ? parts[0][0]
+          : (parts[0][0] + (parts[1] ? parts[1][0] : "")).toUpperCase();
+      initials = initials.toUpperCase();
+    }
+    if (profileBtn) {
+      const span = profileBtn.querySelector("span");
+      if (span) span.textContent = initials;
+    }
+  } catch (e) {
+    console.error("Failed to update profile UI:", e);
+  }
+}
+
+function showProfileModal() {
+  const modal = document.getElementById("profileModal");
+  if (!modal) return;
+  const profile = JSON.parse(localStorage.getItem("profile") || "null");
+  const nameInp = document.getElementById("profileName");
+  const phoneInp = document.getElementById("profilePhone");
+  const err = document.getElementById("profileError");
+  if (err) {
+    err.style.display = "none";
+    err.textContent = "";
+  }
+  if (nameInp) nameInp.value = profile && profile.name ? profile.name : "";
+  if (phoneInp) phoneInp.value = profile && profile.phone ? profile.phone : "";
+  modal.style.display = "flex";
+  closeProfileMenu();
+  // focus the name input so the user can start typing without the auto-start
+  // (we also block auto-start when focus is in inputs in setupAutoStart)
+  if (nameInp) {
+    setTimeout(() => {
+      try {
+        nameInp.focus();
+        nameInp.select();
+      } catch (e) {}
+    }, 50);
+  }
+}
+
+function closeProfileModal() {
+  const modal = document.getElementById("profileModal");
+  if (!modal) return;
+  modal.style.display = "none";
+}
+
+function saveProfile() {
+  const nameInp = document.getElementById("profileName");
+  const phoneInp = document.getElementById("profilePhone");
+  const err = document.getElementById("profileError");
+  const name = nameInp ? nameInp.value.trim() : "";
+  const phone = phoneInp ? phoneInp.value.trim() : "";
+
+  if (!name || name.length < 2) {
+    if (err) {
+      err.style.display = "block";
+      err.textContent = "Please enter your full name.";
+    }
+    return;
+  }
+
+  // basic phone validation: digits, spaces, +, -, parentheses allowed, length 7-20
+  const phoneClean = phone.replace(/[\s\-()]/g, "");
+  if (!/^\+?[0-9]{7,20}$/.test(phoneClean)) {
+    if (err) {
+      err.style.display = "block";
+      err.textContent =
+        "Please enter a valid phone number (digits, optional +).";
+    }
+    return;
+  }
+
+  const profile = { name, phone };
+  try {
+    localStorage.setItem("profile", JSON.stringify(profile));
+    updateProfileUI();
+    closeProfileModal();
+  } catch (e) {
+    if (err) {
+      err.style.display = "block";
+      err.textContent = "Failed to save profile.";
+    }
+    console.error("Failed to save profile:", e);
+  }
+}
+
+function signOut() {
+  try {
+    localStorage.removeItem("profile");
+    updateProfileUI();
+    closeProfileMenu();
+    // optional: show a small confirmation
+    alert("Signed out Successfully.");
+  } catch (e) {
+    console.error("Failed to sign out:", e);
+  }
+}
 
 // Auto-start functionality
 function setupAutoStart() {
   document.addEventListener("keypress", (e) => {
+    // Don't auto-start the test when the user is typing into form fields
+    // or when focus is inside a modal. This prevents the profile modal
+    // inputs from triggering a test when the user fills their name/phone.
+    const target = e.target || document.activeElement;
+    const tag = target && target.tagName ? target.tagName.toLowerCase() : "";
+    const insideModal = !!(
+      target &&
+      target.closest &&
+      (target.closest(".modal-content") || target.closest(".modal-overlay"))
+    );
+    const isFormField = !!(
+      target &&
+      (target.isContentEditable ||
+        tag === "input" ||
+        tag === "textarea" ||
+        tag === "select")
+    );
+    if (isFormField || insideModal) return;
+
     if (
       !isTyping &&
       e.key.length === 1 &&
