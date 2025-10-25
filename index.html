@@ -1,375 +1,610 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TypeMaster Pro - Advanced Typing Test</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeMaster - Advanced Typing Test</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body class="scroll-smooth">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="scroll-smooth">
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-lg shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <span class="text-white text-xl">⚡</span>
-                </div>
-                <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    TypeMaster Pro
-                </h1>
-            </div>
-
-            <div class="flex items-center gap-3">
-                <button onclick="showHistory()" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
-                    <span class="text-xl">📊</span>
-                </button>
-                <button onclick="showAchievements()" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
-                    <span class="text-xl">🏆</span>
-                </button>
-                <button onclick="showLeaderboard()" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
-                    <span class="text-xl">👑</span>
-                </button>
-                <button onclick="showSettings()" class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
-                    <span class="text-xl">⚙️</span>
-                </button>
-            </div>
+      <div
+        class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center"
+          >
+            <span class="text-white text-xl">⚡</span>
+          </div>
+          <h1
+            class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+          >
+            TypeMaster
+          </h1>
         </div>
+
+        <div class="flex items-center gap-3">
+          <button
+            onclick="showHistory()"
+            class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
+          >
+            <span class="text-xl">📊</span>
+          </button>
+          <button
+            onclick="showAchievements()"
+            class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
+          >
+            <span class="text-xl">🏆</span>
+          </button>
+          <button
+            onclick="showLeaderboard()"
+            class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
+          >
+            <span class="text-xl">👑</span>
+          </button>
+          <button
+            onclick="showSettings()"
+            class="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
+          >
+            <span class="text-xl">⚙️</span>
+          </button>
+        </div>
+      </div>
     </nav>
 
     <!-- Main Container -->
     <main class="max-w-7xl mx-auto px-4 py-8">
-        <!-- Mode Selection -->
-        <div id="modeSelection" class="flex flex-wrap gap-3 justify-center mb-8">
-            <button onclick="selectMode('classic', 60)" class="mode-btn active px-6 py-3 rounded-xl bg-white shadow-md font-semibold">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">⏱️</span>
-                    <span>Classic</span>
-                </div>
-            </button>
-            <button onclick="selectMode('paragraph')" class="mode-btn px-6 py-3 rounded-xl bg-white shadow-md font-semibold">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">📝</span>
-                    <span>Paragraph</span>
-                </div>
-            </button>
-            <button onclick="selectMode('code')" class="mode-btn px-6 py-3 rounded-xl bg-white shadow-md font-semibold">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">💻</span>
-                    <span>Code</span>
-                </div>
-            </button>
-            <button onclick="selectMode('zen')" class="mode-btn px-6 py-3 rounded-xl bg-white shadow-md font-semibold">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">🧘</span>
-                    <span>Zen</span>
-                </div>
-            </button>
-            <button onclick="selectMode('practice')" class="mode-btn px-6 py-3 rounded-xl bg-white shadow-md font-semibold">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">🎯</span>
-                    <span>Practice</span>
-                </div>
-            </button>
+      <!-- Mode Selection -->
+      <div id="modeSelection" class="flex flex-wrap gap-3 justify-center mb-8">
+        <button
+          onclick="selectMode('classic', 60)"
+          class="mode-btn active px-6 py-3 rounded-xl bg-white shadow-md font-semibold"
+        >
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">⏱️</span>
+            <span>Classic</span>
+          </div>
+        </button>
+        <button
+          onclick="selectMode('paragraph')"
+          class="mode-btn px-6 py-3 rounded-xl bg-white shadow-md font-semibold"
+        >
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">📝</span>
+            <span>Paragraph</span>
+          </div>
+        </button>
+        <button
+          onclick="selectMode('code')"
+          class="mode-btn px-6 py-3 rounded-xl bg-white shadow-md font-semibold"
+        >
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">💻</span>
+            <span>Code</span>
+          </div>
+        </button>
+        <button
+          onclick="selectMode('zen')"
+          class="mode-btn px-6 py-3 rounded-xl bg-white shadow-md font-semibold"
+        >
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🧘</span>
+            <span>Zen</span>
+          </div>
+        </button>
+        <button
+          onclick="selectMode('practice')"
+          class="mode-btn px-6 py-3 rounded-xl bg-white shadow-md font-semibold"
+        >
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🎯</span>
+            <span>Practice</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Duration Selection (for Classic mode) -->
+      <div id="durationSelection" class="flex gap-2 justify-center mb-8">
+        <button
+          onclick="setDuration(15)"
+          class="px-4 py-2 rounded-lg bg-white border-2 border-slate-200 hover:border-blue-400 transition-colors"
+        >
+          15s
+        </button>
+        <button
+          onclick="setDuration(30)"
+          class="px-4 py-2 rounded-lg bg-white border-2 border-slate-200 hover:border-blue-400 transition-colors"
+        >
+          30s
+        </button>
+        <button
+          onclick="setDuration(60)"
+          class="px-4 py-2 rounded-lg bg-white border-2 border-blue-400 transition-colors"
+        >
+          60s
+        </button>
+        <button
+          onclick="setDuration(120)"
+          class="px-4 py-2 rounded-lg bg-white border-2 border-slate-200 hover:border-blue-400 transition-colors"
+        >
+          120s
+        </button>
+      </div>
+
+      <!-- Timer Display -->
+      <div class="text-center mb-6">
+        <div
+          class="inline-flex items-center gap-3 px-6 py-3 bg-blue-50 rounded-full"
+        >
+          <span class="text-blue-600 text-lg">⏱️</span>
+          <span id="timer" class="text-4xl font-bold text-blue-600 tabular-nums"
+            >60</span
+          >
+          <span class="text-blue-500">seconds</span>
+        </div>
+      </div>
+
+      <!-- Main Typing Area -->
+      <div class="max-w-4xl mx-auto">
+        <div
+          id="typingBox"
+          class="bg-white rounded-2xl shadow-xl p-12 border border-slate-200 mb-6"
+        >
+          <div
+            id="textDisplay"
+            class="typing-text text-slate-400 min-h-[200px]"
+          ></div>
         </div>
 
-        <!-- Duration Selection (for Classic mode) -->
-        <div id="durationSelection" class="flex gap-2 justify-center mb-8">
-            <button onclick="setDuration(15)" class="px-4 py-2 rounded-lg bg-white border-2 border-slate-200 hover:border-blue-400 transition-colors">15s</button>
-            <button onclick="setDuration(30)" class="px-4 py-2 rounded-lg bg-white border-2 border-slate-200 hover:border-blue-400 transition-colors">30s</button>
-            <button onclick="setDuration(60)" class="px-4 py-2 rounded-lg bg-white border-2 border-blue-400 transition-colors">60s</button>
-            <button onclick="setDuration(120)" class="px-4 py-2 rounded-lg bg-white border-2 border-slate-200 hover:border-blue-400 transition-colors">120s</button>
+        <!-- Real-Time Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div
+            class="stat-card bg-white rounded-xl p-4 shadow-md border border-slate-200"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center"
+              >
+                <span class="text-2xl">⚡</span>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">
+                  WPM
+                </p>
+                <p id="wpmDisplay" class="text-3xl font-bold text-slate-900">
+                  0
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="stat-card bg-white rounded-xl p-4 shadow-md border border-slate-200"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center"
+              >
+                <span class="text-2xl">🎯</span>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">
+                  Accuracy
+                </p>
+                <p
+                  id="accuracyDisplay"
+                  class="text-3xl font-bold text-slate-900"
+                >
+                  100%
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="stat-card bg-white rounded-xl p-4 shadow-md border border-slate-200"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center"
+              >
+                <span class="text-2xl">❌</span>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">
+                  Errors
+                </p>
+                <p id="errorsDisplay" class="text-3xl font-bold text-slate-900">
+                  0
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="stat-card bg-white rounded-xl p-4 shadow-md border border-slate-200"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center"
+              >
+                <span class="text-2xl">🔥</span>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">
+                  Streak
+                </p>
+                <p id="streakDisplay" class="text-3xl font-bold text-slate-900">
+                  0
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Timer Display -->
-        <div class="text-center mb-6">
-            <div class="inline-flex items-center gap-3 px-6 py-3 bg-blue-50 rounded-full">
-                <span class="text-blue-600 text-lg">⏱️</span>
-                <span id="timer" class="text-4xl font-bold text-blue-600 tabular-nums">60</span>
-                <span class="text-blue-500">seconds</span>
-            </div>
+        <!-- Live WPM Graph -->
+        <div
+          id="liveGraphContainer"
+          class="bg-white rounded-xl p-6 shadow-md border border-slate-200 mb-6"
+          style="display: none"
+        >
+          <h3 class="text-lg font-semibold mb-4">Live WPM</h3>
+          <svg class="w-full wpm-graph" viewBox="0 0 800 200">
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop
+                  offset="0%"
+                  style="stop-color: #3b82f6; stop-opacity: 0.3"
+                />
+                <stop
+                  offset="100%"
+                  style="stop-color: #3b82f6; stop-opacity: 0"
+                />
+              </linearGradient>
+            </defs>
+            <path id="graphLine" class="graph-line" d="M 0 200" />
+            <path id="graphArea" class="graph-area" d="M 0 200" />
+          </svg>
         </div>
 
-        <!-- Main Typing Area -->
-        <div class="max-w-4xl mx-auto">
-            <div id="typingBox" class="bg-white rounded-2xl shadow-xl p-12 border border-slate-200 mb-6">
-                <div id="textDisplay" class="typing-text text-slate-400 min-h-[200px]"></div>
-            </div>
-
-            <!-- Real-Time Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div class="stat-card bg-white rounded-xl p-4 shadow-md border border-slate-200">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                            <span class="text-2xl">⚡</span>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 uppercase tracking-wide">WPM</p>
-                            <p id="wpmDisplay" class="text-3xl font-bold text-slate-900">0</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stat-card bg-white rounded-xl p-4 shadow-md border border-slate-200">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                            <span class="text-2xl">🎯</span>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 uppercase tracking-wide">Accuracy</p>
-                            <p id="accuracyDisplay" class="text-3xl font-bold text-slate-900">100%</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stat-card bg-white rounded-xl p-4 shadow-md border border-slate-200">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
-                            <span class="text-2xl">❌</span>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 uppercase tracking-wide">Errors</p>
-                            <p id="errorsDisplay" class="text-3xl font-bold text-slate-900">0</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stat-card bg-white rounded-xl p-4 shadow-md border border-slate-200">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
-                            <span class="text-2xl">🔥</span>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 uppercase tracking-wide">Streak</p>
-                            <p id="streakDisplay" class="text-3xl font-bold text-slate-900">0</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Live WPM Graph -->
-            <div id="liveGraphContainer" class="bg-white rounded-xl p-6 shadow-md border border-slate-200 mb-6" style="display: none;">
-                <h3 class="text-lg font-semibold mb-4">Live WPM</h3>
-                <svg class="w-full wpm-graph" viewBox="0 0 800 200">
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3" />
-                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
-                        </linearGradient>
-                    </defs>
-                    <path id="graphLine" class="graph-line" d="M 0 200" />
-                    <path id="graphArea" class="graph-area" d="M 0 200" />
-                </svg>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex gap-3 justify-center">
-                <button id="startBtn" onclick="startTest()" class="btn-primary px-8 py-3 text-white rounded-xl font-semibold shadow-lg">
-                    Start Test
-                </button>
-                <button id="restartBtn" onclick="restartTest()" class="px-8 py-3 bg-white text-slate-700 rounded-xl font-semibold shadow-md hover:bg-slate-50 transition-colors" style="display: none;">
-                    Restart
-                </button>
-            </div>
+        <!-- Action Buttons -->
+        <div class="flex gap-3 justify-center">
+          <button
+            id="startBtn"
+            onclick="startTest()"
+            class="btn-primary px-8 py-3 text-white rounded-xl font-semibold shadow-lg"
+          >
+            Start Test
+          </button>
+          <button
+            id="restartBtn"
+            onclick="restartTest()"
+            class="px-8 py-3 bg-white text-slate-700 rounded-xl font-semibold shadow-md hover:bg-slate-50 transition-colors"
+            style="display: none"
+          >
+            Restart
+          </button>
         </div>
+      </div>
     </main>
 
     <!-- Results Modal -->
-    <div id="resultsModal" class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4" style="display: none;">
-        <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar">
-            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-t-2xl relative">
-                <button onclick="closeResults()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white">
-                    ✕
-                </button>
-                <h2 class="text-2xl font-bold text-white">Test Complete! 🎉</h2>
-            </div>
-
-            <div class="p-6">
-                <div class="text-center mb-8">
-                    <p id="resultWPM" class="text-6xl font-bold text-blue-600">0</p>
-                    <p class="text-slate-500 mt-2">Words Per Minute</p>
-                    <div id="newRecord" class="mt-2 px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full inline-block font-semibold" style="display: none;">
-                        🏆 New Personal Record!
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 mb-6">
-                    <div class="text-center p-4 bg-slate-50 rounded-xl">
-                        <p class="text-sm text-slate-500 mb-1">Accuracy</p>
-                        <p id="resultAccuracy" class="text-2xl font-bold">0%</p>
-                    </div>
-                    <div class="text-center p-4 bg-slate-50 rounded-xl">
-                        <p class="text-sm text-slate-500 mb-1">Errors</p>
-                        <p id="resultErrors" class="text-2xl font-bold">0</p>
-                    </div>
-                    <div class="text-center p-4 bg-slate-50 rounded-xl">
-                        <p class="text-sm text-slate-500 mb-1">Correct</p>
-                        <p id="resultCorrect" class="text-2xl font-bold">0</p>
-                    </div>
-                    <div class="text-center p-4 bg-slate-50 rounded-xl">
-                        <p class="text-sm text-slate-500 mb-1">Characters</p>
-                        <p id="resultChars" class="text-2xl font-bold">0</p>
-                    </div>
-                </div>
-
-                <!-- Achievements Unlocked -->
-                <div id="achievementsUnlocked" class="mb-6" style="display: none;">
-                    <h3 class="text-lg font-semibold mb-3">Achievements Unlocked! 🏆</h3>
-                    <div id="achievementsList" class="flex flex-wrap gap-2"></div>
-                </div>
-
-                <div class="flex gap-3">
-                    <button onclick="restartTest()" class="flex-1 px-6 py-3 btn-primary text-white rounded-xl font-semibold">
-                        Try Again
-                    </button>
-                    <button onclick="shareResults()" class="px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
-                        Share 📤
-                    </button>
-                </div>
-            </div>
+    <div
+      id="resultsModal"
+      class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4"
+      style="display: none"
+    >
+      <div
+        class="modal-content bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar"
+      >
+        <div
+          class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-t-2xl relative"
+        >
+          <button
+            onclick="closeResults()"
+            class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white"
+          >
+            ✕
+          </button>
+          <h2 class="text-2xl font-bold text-white">Test Complete! 🎉</h2>
         </div>
+
+        <div class="p-6">
+          <div class="text-center mb-8">
+            <p id="resultWPM" class="text-6xl font-bold text-blue-600">0</p>
+            <p class="text-slate-500 mt-2">Words Per Minute</p>
+            <div
+              id="newRecord"
+              class="mt-2 px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full inline-block font-semibold"
+              style="display: none"
+            >
+              🏆 New Personal Record!
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="text-center p-4 bg-slate-50 rounded-xl">
+              <p class="text-sm text-slate-500 mb-1">Accuracy</p>
+              <p id="resultAccuracy" class="text-2xl font-bold">0%</p>
+            </div>
+            <div class="text-center p-4 bg-slate-50 rounded-xl">
+              <p class="text-sm text-slate-500 mb-1">Errors</p>
+              <p id="resultErrors" class="text-2xl font-bold">0</p>
+            </div>
+            <div class="text-center p-4 bg-slate-50 rounded-xl">
+              <p class="text-sm text-slate-500 mb-1">Correct</p>
+              <p id="resultCorrect" class="text-2xl font-bold">0</p>
+            </div>
+            <div class="text-center p-4 bg-slate-50 rounded-xl">
+              <p class="text-sm text-slate-500 mb-1">Characters</p>
+              <p id="resultChars" class="text-2xl font-bold">0</p>
+            </div>
+          </div>
+
+          <!-- Achievements Unlocked -->
+          <div id="achievementsUnlocked" class="mb-6" style="display: none">
+            <h3 class="text-lg font-semibold mb-3">
+              Achievements Unlocked! 🏆
+            </h3>
+            <div id="achievementsList" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <div class="flex gap-3">
+            <button
+              onclick="restartTest()"
+              class="flex-1 px-6 py-3 btn-primary text-white rounded-xl font-semibold"
+            >
+              Try Again
+            </button>
+            <button
+              onclick="shareResults()"
+              class="px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors"
+            >
+              Share 📤
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- History Modal -->
-    <div id="historyModal" class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4" style="display: none;">
-        <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar">
-            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-t-2xl relative">
-                <button onclick="closeHistory()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white">
-                    ✕
-                </button>
-                <h2 class="text-2xl font-bold text-white">Performance History 📊</h2>
-            </div>
-
-            <div class="p-6">
-                <!-- Stats Summary -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    <div class="text-center p-4 bg-blue-50 rounded-xl">
-                        <p class="text-sm text-blue-600 mb-1">Total Tests</p>
-                        <p id="totalTests" class="text-3xl font-bold text-blue-600">0</p>
-                    </div>
-                    <div class="text-center p-4 bg-green-50 rounded-xl">
-                        <p class="text-sm text-green-600 mb-1">Best WPM</p>
-                        <p id="bestWPM" class="text-3xl font-bold text-green-600">0</p>
-                    </div>
-                    <div class="text-center p-4 bg-purple-50 rounded-xl">
-                        <p class="text-sm text-purple-600 mb-1">Avg WPM</p>
-                        <p id="avgWPM" class="text-3xl font-bold text-purple-600">0</p>
-                    </div>
-                    <div class="text-center p-4 bg-amber-50 rounded-xl">
-                        <p class="text-sm text-amber-600 mb-1">Avg Accuracy</p>
-                        <p id="avgAccuracy" class="text-3xl font-bold text-amber-600">0%</p>
-                    </div>
-                </div>
-
-                <!-- Progress Chart -->
-                <div class="mb-6 bg-slate-50 rounded-xl p-4">
-                    <h3 class="text-lg font-semibold mb-4">WPM Progress</h3>
-                    <canvas id="progressChart" width="800" height="200"></canvas>
-                </div>
-
-                <!-- History Table -->
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr class="border-b-2 border-slate-200">
-                                <th class="text-left py-3 px-4 text-sm font-semibold text-slate-600">Date</th>
-                                <th class="text-left py-3 px-4 text-sm font-semibold text-slate-600">Mode</th>
-                                <th class="text-left py-3 px-4 text-sm font-semibold text-slate-600">WPM</th>
-                                <th class="text-left py-3 px-4 text-sm font-semibold text-slate-600">Accuracy</th>
-                                <th class="text-left py-3 px-4 text-sm font-semibold text-slate-600">Duration</th>
-                            </tr>
-                        </thead>
-                        <tbody id="historyTableBody"></tbody>
-                    </table>
-                </div>
-
-                <button onclick="clearHistory()" class="mt-6 w-full px-6 py-3 bg-red-100 text-red-600 rounded-xl font-semibold hover:bg-red-200 transition-colors">
-                    Clear History
-                </button>
-            </div>
+    <div
+      id="historyModal"
+      class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4"
+      style="display: none"
+    >
+      <div
+        class="modal-content bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar"
+      >
+        <div
+          class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-t-2xl relative"
+        >
+          <button
+            onclick="closeHistory()"
+            class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white"
+          >
+            ✕
+          </button>
+          <h2 class="text-2xl font-bold text-white">Performance History 📊</h2>
         </div>
+
+        <div class="p-6">
+          <!-- Stats Summary -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="text-center p-4 bg-blue-50 rounded-xl">
+              <p class="text-sm text-blue-600 mb-1">Total Tests</p>
+              <p id="totalTests" class="text-3xl font-bold text-blue-600">0</p>
+            </div>
+            <div class="text-center p-4 bg-green-50 rounded-xl">
+              <p class="text-sm text-green-600 mb-1">Best WPM</p>
+              <p id="bestWPM" class="text-3xl font-bold text-green-600">0</p>
+            </div>
+            <div class="text-center p-4 bg-purple-50 rounded-xl">
+              <p class="text-sm text-purple-600 mb-1">Avg WPM</p>
+              <p id="avgWPM" class="text-3xl font-bold text-purple-600">0</p>
+            </div>
+            <div class="text-center p-4 bg-amber-50 rounded-xl">
+              <p class="text-sm text-amber-600 mb-1">Avg Accuracy</p>
+              <p id="avgAccuracy" class="text-3xl font-bold text-amber-600">
+                0%
+              </p>
+            </div>
+          </div>
+
+          <!-- Progress Chart -->
+          <div class="mb-6 bg-slate-50 rounded-xl p-4">
+            <h3 class="text-lg font-semibold mb-4">WPM Progress</h3>
+            <canvas id="progressChart" width="800" height="200"></canvas>
+          </div>
+
+          <!-- History Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b-2 border-slate-200">
+                  <th
+                    class="text-left py-3 px-4 text-sm font-semibold text-slate-600"
+                  >
+                    Date
+                  </th>
+                  <th
+                    class="text-left py-3 px-4 text-sm font-semibold text-slate-600"
+                  >
+                    Mode
+                  </th>
+                  <th
+                    class="text-left py-3 px-4 text-sm font-semibold text-slate-600"
+                  >
+                    WPM
+                  </th>
+                  <th
+                    class="text-left py-3 px-4 text-sm font-semibold text-slate-600"
+                  >
+                    Accuracy
+                  </th>
+                  <th
+                    class="text-left py-3 px-4 text-sm font-semibold text-slate-600"
+                  >
+                    Duration
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody"></tbody>
+            </table>
+          </div>
+
+          <button
+            onclick="clearHistory()"
+            class="mt-6 w-full px-6 py-3 bg-red-100 text-red-600 rounded-xl font-semibold hover:bg-red-200 transition-colors"
+          >
+            Clear History
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Achievements Modal -->
-    <div id="achievementsModal" class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4" style="display: none;">
-        <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar">
-            <div class="bg-gradient-to-r from-amber-500 to-orange-600 p-6 rounded-t-2xl relative">
-                <button onclick="closeAchievements()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white">
-                    ✕
-                </button>
-                <h2 class="text-2xl font-bold text-white">Achievements 🏆</h2>
-            </div>
-
-            <div class="p-6">
-                <div id="achievementsGrid" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
-            </div>
+    <div
+      id="achievementsModal"
+      class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4"
+      style="display: none"
+    >
+      <div
+        class="modal-content bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar"
+      >
+        <div
+          class="bg-gradient-to-r from-amber-500 to-orange-600 p-6 rounded-t-2xl relative"
+        >
+          <button
+            onclick="closeAchievements()"
+            class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white"
+          >
+            ✕
+          </button>
+          <h2 class="text-2xl font-bold text-white">Achievements 🏆</h2>
         </div>
+
+        <div class="p-6">
+          <div
+            id="achievementsGrid"
+            class="grid grid-cols-2 md:grid-cols-3 gap-4"
+          ></div>
+        </div>
+      </div>
     </div>
 
     <!-- Leaderboard Modal -->
-    <div id="leaderboardModal" class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4" style="display: none;">
-        <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar">
-            <div class="bg-gradient-to-r from-yellow-500 to-amber-600 p-6 rounded-t-2xl relative">
-                <button onclick="closeLeaderboard()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white">
-                    ✕
-                </button>
-                <h2 class="text-2xl font-bold text-white">Local Leaderboard 👑</h2>
-            </div>
-
-            <div class="p-6">
-                <div id="leaderboardList" class="space-y-2"></div>
-            </div>
+    <div
+      id="leaderboardModal"
+      class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4"
+      style="display: none"
+    >
+      <div
+        class="modal-content bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar"
+      >
+        <div
+          class="bg-gradient-to-r from-yellow-500 to-amber-600 p-6 rounded-t-2xl relative"
+        >
+          <button
+            onclick="closeLeaderboard()"
+            class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white"
+          >
+            ✕
+          </button>
+          <h2 class="text-2xl font-bold text-white">Local Leaderboard 👑</h2>
         </div>
+
+        <div class="p-6">
+          <div id="leaderboardList" class="space-y-2"></div>
+        </div>
+      </div>
     </div>
 
     <!-- Settings Modal -->
-    <div id="settingsModal" class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4" style="display: none;">
-        <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar">
-            <div class="bg-gradient-to-r from-slate-700 to-slate-900 p-6 rounded-t-2xl relative">
-                <button onclick="closeSettings()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white">
-                    ✕
-                </button>
-                <h2 class="text-2xl font-bold text-white">Settings ⚙️</h2>
-            </div>
-
-            <div class="p-6 space-y-6">
-                <div>
-                    <label class="block text-sm font-semibold mb-2">Font Size</label>
-                    <select id="fontSizeSetting" onchange="updateSettings()" class="w-full px-4 py-2 border-2 border-slate-200 rounded-lg">
-                        <option value="18">Small (18px)</option>
-                        <option value="24" selected>Medium (24px)</option>
-                        <option value="30">Large (30px)</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold mb-2">Sound Effects</label>
-                    <label class="flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" id="soundSetting" onchange="updateSettings()" class="w-5 h-5">
-                        <span>Enable keystroke sounds</span>
-                    </label>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold mb-2">Show Live Graph</label>
-                    <label class="flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" id="liveGraphSetting" onchange="updateSettings()" checked class="w-5 h-5">
-                        <span>Display real-time WPM graph</span>
-                    </label>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold mb-2">Caret Style</label>
-                    <select id="caretStyle" onchange="updateSettings()" class="w-full px-4 py-2 border-2 border-slate-200 rounded-lg">
-                        <option value="line">Line</option>
-                        <option value="block">Block</option>
-                        <option value="underline">Underline</option>
-                    </select>
-                </div>
-            </div>
+    <div
+      id="settingsModal"
+      class="fixed inset-0 bg-slate-900/50 modal-overlay items-center justify-center p-4"
+      style="display: none"
+    >
+      <div
+        class="modal-content bg-white rounded-2xl shadow-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar"
+      >
+        <div
+          class="bg-gradient-to-r from-slate-700 to-slate-900 p-6 rounded-t-2xl relative"
+        >
+          <button
+            onclick="closeSettings()"
+            class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white"
+          >
+            ✕
+          </button>
+          <h2 class="text-2xl font-bold text-white">Settings ⚙️</h2>
         </div>
+
+        <div class="p-6 space-y-6">
+          <div>
+            <label class="block text-sm font-semibold mb-2">Font Size</label>
+            <select
+              id="fontSizeSetting"
+              onchange="updateSettings()"
+              class="w-full px-4 py-2 border-2 border-slate-200 rounded-lg"
+            >
+              <option value="18">Small (18px)</option>
+              <option value="24" selected>Medium (24px)</option>
+              <option value="30">Large (30px)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold mb-2"
+              >Sound Effects</label
+            >
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                id="soundSetting"
+                onchange="updateSettings()"
+                class="w-5 h-5"
+              />
+              <span>Enable keystroke sounds</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold mb-2"
+              >Show Live Graph</label
+            >
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                id="liveGraphSetting"
+                onchange="updateSettings()"
+                checked
+                class="w-5 h-5"
+              />
+              <span>Display real-time WPM graph</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold mb-2">Caret Style</label>
+            <select
+              id="caretStyle"
+              onchange="updateSettings()"
+              class="w-full px-4 py-2 border-2 border-slate-200 rounded-lg"
+            >
+              <option value="line">Line</option>
+              <option value="block">Block</option>
+              <option value="underline">Underline</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
