@@ -6,8 +6,125 @@ function handleLoader() {
   }, 3000); // 3 seconds
 }
 
-// Call handleLoader when the page loads
-document.addEventListener("DOMContentLoaded", handleLoader);
+// Theme Toggle Functionality
+function initializeTheme() {
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  const darkIcon = document.getElementById("darkIcon");
+
+  // Check for saved theme preference or use system preference
+  const savedTheme = localStorage.getItem("theme");
+  if (
+    savedTheme === "dark" ||
+    (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.body.classList.add("dark");
+    darkIcon.textContent = "☀️";
+    darkModeToggle.setAttribute("aria-pressed", "true");
+  }
+
+  // Add click event listener
+  darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    darkIcon.textContent = isDark ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    darkModeToggle.setAttribute("aria-pressed", isDark.toString());
+  });
+}
+
+// Profile Functionality
+function initializeProfile() {
+  const profileBtn = document.getElementById("profileBtn");
+  const profileMenu = document.getElementById("profileMenu");
+
+  // Toggle profile menu
+  profileBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+    profileBtn.setAttribute("aria-expanded", (!isExpanded).toString());
+    profileMenu.classList.toggle("hidden");
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!profileBtn.contains(e.target) && !profileMenu.contains(e.target)) {
+      profileMenu.classList.add("hidden");
+      profileBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Load saved profile data
+  const savedProfile = JSON.parse(localStorage.getItem("profile") || "{}");
+  if (savedProfile.name) {
+    document.getElementById("profileName").value = savedProfile.name;
+    // Update profile button initial
+    const initial = savedProfile.name.charAt(0).toUpperCase();
+    profileBtn.querySelector("span").textContent = initial;
+  }
+  if (savedProfile.phone) {
+    document.getElementById("profilePhone").value = savedProfile.phone;
+  }
+}
+
+// Profile Modal Functions
+function showProfileModal() {
+  const profileModal = document.getElementById("profileModal");
+  const profileMenu = document.getElementById("profileMenu");
+  profileModal.style.display = "flex";
+  profileMenu.classList.add("hidden"); // Hide dropdown when modal opens
+  document.getElementById("profileBtn").setAttribute("aria-expanded", "false");
+}
+
+function closeProfileModal() {
+  const profileModal = document.getElementById("profileModal");
+  profileModal.style.display = "none";
+}
+
+function saveProfile() {
+  const nameInput = document.getElementById("profileName");
+  const phoneInput = document.getElementById("profilePhone");
+  const errorElement = document.getElementById("profileError");
+
+  // Basic validation
+  if (!nameInput.value.trim() || !phoneInput.value.trim()) {
+    errorElement.textContent = "Please fill in all fields";
+    errorElement.style.display = "block";
+    return;
+  }
+
+  // Phone number validation (basic)
+  const phoneRegex = /^\+?[\d\s-]{10,}$/;
+  if (!phoneRegex.test(phoneInput.value.trim())) {
+    errorElement.textContent = "Please enter a valid phone number";
+    errorElement.style.display = "block";
+    return;
+  }
+
+  // Save to localStorage
+  const profile = {
+    name: nameInput.value.trim(),
+    phone: phoneInput.value.trim(),
+  };
+  localStorage.setItem("profile", JSON.stringify(profile));
+
+  // Update profile button initial
+  const initial = profile.name.charAt(0).toUpperCase();
+  document.getElementById("profileBtn").querySelector("span").textContent =
+    initial;
+
+  // Hide error message if it was shown
+  errorElement.style.display = "none";
+
+  // Close modal
+  closeProfileModal();
+}
+
+// Call handleLoader, initializeTheme, and initializeProfile when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  handleLoader();
+  initializeTheme();
+  initializeProfile();
+});
 
 // Core State
 let currentMode = "classic";
