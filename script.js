@@ -430,6 +430,11 @@ function endTest() {
 
 // Typing Logic
 function handleKeyPress(e) {
+  // Check if we're typing in an input field
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    return; // Allow normal input behavior
+  }
+
   if (!isTyping) return;
 
   // Prevent default for most keys
