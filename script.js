@@ -3,7 +3,7 @@ function handleLoader() {
   const loaderScreen = document.getElementById("loaderScreen");
   setTimeout(() => {
     loaderScreen.classList.add("hidden");
-  }, 3000); // 3 seconds
+  }, 1000); // 3 seconds
 }
 
 // Theme Toggle Functionality
@@ -431,7 +431,7 @@ function endTest() {
 // Typing Logic
 function handleKeyPress(e) {
   // Check if we're typing in an input field
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
     return; // Allow normal input behavior
   }
 
