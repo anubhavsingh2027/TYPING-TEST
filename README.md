@@ -1,8 +1,8 @@
 # ⚡ Typing Test — Improve Your Speed & Accuracy
 
-🚀 **[Live Website → typeing-master.anubhav.sbs](https://typeing-master.anubhav.sbs)**
+🚀 **[Live Website → typing-master.anubhav.sbs](https://typing-master.anubhav.sbs)**
 🖼️ **Preview:**
-![Typing Test Preview](hhttps://typing-master.anubhav.sbs/image/websiteImg.png)
+![Typing Test Preview](https://typing-master.anubhav.sbs/image/websiteImg.png)
 
 ---
 
