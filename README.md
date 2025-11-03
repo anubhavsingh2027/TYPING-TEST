@@ -2,7 +2,7 @@
 
 🚀 **[Live Website → typeing-master.anubhav.sbs](https://typeing-master.anubhav.sbs)**
 🖼️ **Preview:**
-![Typing Test Preview](https://typeing-master.anubhav.sbs/image/websiteImg.png)
+![Typing Test Preview](hhttps://typing-master.anubhav.sbs/image/websiteImg.png)
 
 ---
 
