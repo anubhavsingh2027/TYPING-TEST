@@ -7,7 +7,7 @@
             box-sizing: border-box;
         }
 
-        /* Loader styles */
+
         .loader-bg {
             background: linear-gradient(-45deg, #4f46e5, #3b82f6, #6366f1, #8b5cf6);
             background-size: 400% 400%;
