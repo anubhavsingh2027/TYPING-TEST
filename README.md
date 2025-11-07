@@ -1,6 +1,6 @@
 # ⚡ Typing Master — Improve Your Speed & Accuracy
 
-🚀 **[Live Website → typing-master.anubhav.sbs](https://typing-master.anubhav.sbs)**
+🚀 **[Live Website → typing-master-eta.vercel.app](https://typing-master-eta.vercel.app)**
 
 🖼️ **Preview:**
 ![Typing Test Preview](https://typing-master-eta.vercel.app/image/websiteImg.png)
