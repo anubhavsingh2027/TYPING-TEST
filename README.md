@@ -2,7 +2,7 @@
 
 🚀 **[Live Website → typing-master.anubhav.sbs](https://typing-master.anubhav.sbs)**
 🖼️ **Preview:**
-![Typing Test Preview](https://typing-master.anubhav.sbs/image/websiteImg.png)
+![Typing Test Preview](https://typing-master-eta.vercel.app/image/websiteImg.png)
 
 ---
 
@@ -28,10 +28,10 @@ Whether you’re a beginner looking to improve or a pro testing your speed, this
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|-------------|----------|
-| 🧱 **HTML5** | Structure and layout |
-| 🎨 **CSS3** | Styling, animations, and responsiveness |
+| Technology              | Purpose                                    |
+| ----------------------- | ------------------------------------------ |
+| 🧱 **HTML5**            | Structure and layout                       |
+| 🎨 **CSS3**             | Styling, animations, and responsiveness    |
 | ⚙️ **JavaScript (ES6)** | Logic, interactivity, and DOM manipulation |
 
 ---
@@ -48,3 +48,4 @@ git clone https://github.com/anubhavsingh2027/TYPING-TEST.git
 cd TYPING-TEST
 
 # Open the index.html file in your browser
+```

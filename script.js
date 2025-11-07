@@ -405,7 +405,7 @@ function endTest() {
   document.removeEventListener("keydown", handleKeyPress);
 
   const endTime = performance.now();
-  const timeElapsed = (endTime - startTime) / 1000 / 60; // minutes
+  const timeElapsed = (endTime - startTime) / 1000 / 60; 
 
   const grossWPM = totalChars / 5 / timeElapsed;
   const netWPM = Math.max(0, grossWPM - errors / timeElapsed);
